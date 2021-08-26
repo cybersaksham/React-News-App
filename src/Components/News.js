@@ -14,7 +14,12 @@ export class News extends Component {
     let url__ = `https://newsapi.org/v2/top-headlines?country=in&apiKey=faffda3ddbcf4441a8c78ca4774e777d&pageSize=15&page=${page__}`;
     let data__ = await fetch(url__);
     let parsedData__ = await data__.json();
-    this.setState({ articles: parsedData__.articles, loading: false });
+    this.setState({
+      articles: parsedData__.articles,
+      pages: parsedData__.totalResults,
+      page: page__,
+      loading: false,
+    });
   };
 
   async componentDidMount() {
@@ -39,8 +44,15 @@ export class News extends Component {
             </div>
           </div>
           <div className="container my-3 d-flex justify-content-between">
-            <button className="btn btn-dark">&larr; Prev</button>
-            <button className="btn btn-dark">Next &rarr;</button>
+            <button disabled={this.state.page <= 1} className="btn btn-dark">
+              &larr; Prev
+            </button>
+            <button
+              disabled={Math.ceil(this.state.pages / 15) <= this.state.page}
+              className="btn btn-dark"
+            >
+              Next &rarr;
+            </button>
           </div>
         </>
       )
