@@ -37,6 +37,8 @@ export class News extends Component {
             page={this.state.page}
             pages={this.state.pages}
             handlePage={this.handlePage}
+            prevPage={this.handlePrevBtn}
+            nextPage={this.handleNextBtn}
           />
           <div className="container my-3">
             <h2>Latest News</h2>
