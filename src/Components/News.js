@@ -22,9 +22,10 @@ export class News extends Component {
     });
   };
 
-  async componentDidMount() {
-    this.getData(1);
-  }
+  componentDidMount = () => this.getData(1);
+  
+  handlePrevBtn = () => this.getData(this.state.page - 1);
+  handleNextBtn = () => this.getData(this.state.page + 1);
 
   render() {
     return (
@@ -44,11 +45,16 @@ export class News extends Component {
             </div>
           </div>
           <div className="container my-3 d-flex justify-content-between">
-            <button disabled={this.state.page <= 1} className="btn btn-dark">
+            <button
+              disabled={this.state.page <= 1}
+              onClick={this.handlePrevBtn}
+              className="btn btn-dark"
+            >
               &larr; Prev
             </button>
             <button
               disabled={Math.ceil(this.state.pages / 15) <= this.state.page}
+              onClick={this.handleNextBtn}
               className="btn btn-dark"
             >
               Next &rarr;
