@@ -56,22 +56,13 @@ export class News extends Component {
               })}
             </div>
           </div>
-          <div className="container my-3 d-flex justify-content-between">
-            <button
-              disabled={this.state.page <= 1}
-              onClick={this.handlePrevBtn}
-              className="btn btn-dark"
-            >
-              &larr; Prev
-            </button>
-            <button
-              disabled={this.state.pages <= this.state.page}
-              onClick={this.handleNextBtn}
-              className="btn btn-dark"
-            >
-              Next &rarr;
-            </button>
-          </div>
+          <Pagination
+            page={this.state.page}
+            pages={this.state.pages}
+            handlePage={this.handlePage}
+            prevPage={this.handlePrevBtn}
+            nextPage={this.handleNextBtn}
+          />
         </>
       )
     );
