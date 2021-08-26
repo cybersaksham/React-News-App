@@ -8,7 +8,7 @@ export class Pagination extends Component {
       <div className="container my-3 d-flex justify-content-center">
         <nav aria-label="Page navigation example">
           <ul className="pagination">
-            <li className="page-item">
+            <li className={`page-item ${page <= 1 ? "disabled" : ""}`}>
               <button className="page-link">Prev</button>
             </li>
             {Array.from({ length: pages }, (_, index) => index + 1).map((i) => (
@@ -18,10 +18,8 @@ export class Pagination extends Component {
                 </button>
               </li>
             ))}
-            <li className="page-item">
-              <button className="page-link" href="#">
-                Next
-              </button>
+            <li className={`page-item ${pages <= page ? "disabled" : ""}`}>
+              <button className="page-link">Next</button>
             </li>
           </ul>
         </nav>
