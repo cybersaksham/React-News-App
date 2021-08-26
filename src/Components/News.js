@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import NewsItem from "./NewsItem";
+import Pagination from "./Pagination";
 
 export class News extends Component {
   constructor() {
@@ -16,7 +17,7 @@ export class News extends Component {
     let parsedData__ = await data__.json();
     this.setState({
       articles: parsedData__.articles,
-      pages: parsedData__.totalResults,
+      pages: Math.ceil(parsedData__.totalResults / 15),
       page: page__,
       loading: false,
     });
@@ -31,13 +32,17 @@ export class News extends Component {
     return (
       !this.state.loading && (
         <>
+          <Pagination page={this.state.page} pages={this.state.pages} />
           <div className="container my-3">
             <h2>Latest News</h2>
             <hr />
             <div className="row">
               {this.state.articles.map((item) => {
                 return (
-                  <div key={item.url} className="col-md-4 my-3  d-flex justify-content-center">
+                  <div
+                    key={item.url}
+                    className="col-md-4 my-3  d-flex justify-content-center"
+                  >
                     <NewsItem item={item} />
                   </div>
                 );
@@ -53,7 +58,7 @@ export class News extends Component {
               &larr; Prev
             </button>
             <button
-              disabled={Math.ceil(this.state.pages / 15) <= this.state.page}
+              disabled={this.state.pages <= this.state.page}
               onClick={this.handleNextBtn}
               className="btn btn-dark"
             >

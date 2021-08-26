@@ -2,30 +2,26 @@ import React, { Component } from "react";
 
 export class Pagination extends Component {
   render() {
+    let { page, pages } = this.props;
+
     return (
       <div className="container my-3 d-flex justify-content-center">
         <nav aria-label="Page navigation example">
-          <ul class="pagination">
-            <li class="page-item">
-              <span class="page-link">Previous</span>
+          <ul className="pagination">
+            <li className="page-item">
+              <button className="page-link">Prev</button>
             </li>
-            <li class="page-item">
-              <a class="page-link" href="#">
-                1
-              </a>
-            </li>
-            <li class="page-item active" aria-current="page">
-              <span class="page-link">2</span>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#">
-                3
-              </a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#">
+            {Array.from({ length: pages }, (_, index) => index + 1).map((i) => (
+              <li className="page-item">
+                <button className="page-link" href="#">
+                  {i}
+                </button>
+              </li>
+            ))}
+            <li className="page-item">
+              <button className="page-link" href="#">
                 Next
-              </a>
+              </button>
             </li>
           </ul>
         </nav>
