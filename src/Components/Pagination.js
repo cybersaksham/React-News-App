@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export class Pagination extends Component {
   render() {
-    let { page, pages } = this.props;
+    let { page, pages, handlePage } = this.props;
 
     return (
       <div className="container my-3 d-flex justify-content-center">
@@ -12,8 +12,8 @@ export class Pagination extends Component {
               <button className="page-link">Prev</button>
             </li>
             {Array.from({ length: pages }, (_, index) => index + 1).map((i) => (
-              <li className="page-item">
-                <button className="page-link" href="#">
+              <li className={`page-item ${page === i ? "active" : ""}`} key={i}>
+                <button className="page-link" onClick={() => handlePage(i)}>
                   {i}
                 </button>
               </li>

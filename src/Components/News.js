@@ -27,12 +27,17 @@ export class News extends Component {
 
   handlePrevBtn = () => this.getData(this.state.page - 1);
   handleNextBtn = () => this.getData(this.state.page + 1);
+  handlePage = (page__) => this.getData(page__);
 
   render() {
     return (
       !this.state.loading && (
         <>
-          <Pagination page={this.state.page} pages={this.state.pages} />
+          <Pagination
+            page={this.state.page}
+            pages={this.state.pages}
+            handlePage={this.handlePage}
+          />
           <div className="container my-3">
             <h2>Latest News</h2>
             <hr />
