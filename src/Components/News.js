@@ -294,7 +294,7 @@ export class News extends Component {
           {this.state.articles.map((item) => {
             return (
               <div key={item.url} className="col-md-4 my-3">
-                <NewsItem title={item.title} />
+                <NewsItem item={item} />
               </div>
             );
           })}
