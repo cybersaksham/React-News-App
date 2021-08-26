@@ -23,7 +23,7 @@ export class News extends Component {
   };
 
   componentDidMount = () => this.getData(1);
-  
+
   handlePrevBtn = () => this.getData(this.state.page - 1);
   handleNextBtn = () => this.getData(this.state.page + 1);
 
@@ -37,7 +37,7 @@ export class News extends Component {
             <div className="row">
               {this.state.articles.map((item) => {
                 return (
-                  <div key={item.url} className="col-md-4 my-3">
+                  <div key={item.url} className="col-md-4 my-3  d-flex justify-content-center">
                     <NewsItem item={item} />
                   </div>
                 );
