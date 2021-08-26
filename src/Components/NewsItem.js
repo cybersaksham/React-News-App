@@ -6,6 +6,9 @@ export class NewsItem extends Component {
 
     return (
       <div className="card" style={{ width: "18rem" }}>
+        <div class="card-header">
+          {item.source.name ? item.source.name : "Unknown"}
+        </div>
         <img
           src={
             item.urlToImage
@@ -28,6 +31,7 @@ export class NewsItem extends Component {
             Read More
           </a>
         </div>
+        <div class="card-footer text-muted">{item.publishedAt}</div>
       </div>
     );
   }
