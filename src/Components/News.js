@@ -24,19 +24,25 @@ export class News extends Component {
   render() {
     return (
       !this.state.loading && (
-        <div className="container my-3">
-          <h2>Latest News</h2>
-          <hr />
-          <div className="row">
-            {this.state.articles.map((item) => {
-              return (
-                <div key={item.url} className="col-md-4 my-3">
-                  <NewsItem item={item} />
-                </div>
-              );
-            })}
+        <>
+          <div className="container my-3">
+            <h2>Latest News</h2>
+            <hr />
+            <div className="row">
+              {this.state.articles.map((item) => {
+                return (
+                  <div key={item.url} className="col-md-4 my-3">
+                    <NewsItem item={item} />
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
+          <div className="container my-3 d-flex justify-content-between">
+            <button className="btn btn-dark">&larr; Prev</button>
+            <button className="btn btn-dark">Next &rarr;</button>
+          </div>
+        </>
       )
     );
   }
