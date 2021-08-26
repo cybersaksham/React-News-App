@@ -5,34 +5,39 @@ export class News extends Component {
   constructor() {
     super();
     this.state = {
-      articles: [],
       loading: true,
     };
   }
 
-  async componentDidMount() {
-    let url__ =
-      "https://newsapi.org/v2/top-headlines?country=in&apiKey=faffda3ddbcf4441a8c78ca4774e777d";
+  getData = async (page__) => {
+    this.setState({ loading: true });
+    let url__ = `https://newsapi.org/v2/top-headlines?country=in&apiKey=faffda3ddbcf4441a8c78ca4774e777d&pageSize=15&page=${page__}`;
     let data__ = await fetch(url__);
     let parsedData__ = await data__.json();
     this.setState({ articles: parsedData__.articles, loading: false });
+  };
+
+  async componentDidMount() {
+    this.getData(1);
   }
 
   render() {
     return (
-      <div className="container my-3">
-        <h2>Latest News</h2>
-        <hr />
-        <div className="row">
-          {this.state.articles.map((item) => {
-            return (
-              <div key={item.url} className="col-md-4 my-3">
-                <NewsItem item={item} />
-              </div>
-            );
-          })}
+      !this.state.loading && (
+        <div className="container my-3">
+          <h2>Latest News</h2>
+          <hr />
+          <div className="row">
+            {this.state.articles.map((item) => {
+              return (
+                <div key={item.url} className="col-md-4 my-3">
+                  <NewsItem item={item} />
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      )
     );
   }
 }
