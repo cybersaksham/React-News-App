@@ -18,6 +18,9 @@ export class App extends Component {
           <Route exact path="/">
             {this.getNewsComponent("general")}
           </Route>
+          <Route exact path="/general">
+            {this.getNewsComponent("general")}
+          </Route>
           <Route exact path="/business">
             {this.getNewsComponent("business")}
           </Route>
