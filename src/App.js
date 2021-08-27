@@ -10,6 +10,16 @@ export class App extends Component {
     <News key={cat} pageSize={10} country={"in"} category={cat} />
   );
 
+  categories = [
+    "general",
+    "business",
+    "entertainment",
+    "health",
+    "science",
+    "sports",
+    "technology",
+  ];
+
   render() {
     return (
       <Router>
@@ -18,27 +28,11 @@ export class App extends Component {
           <Route exact path="/">
             {this.getNewsComponent("general")}
           </Route>
-          <Route exact path="/general">
-            {this.getNewsComponent("general")}
-          </Route>
-          <Route exact path="/business">
-            {this.getNewsComponent("business")}
-          </Route>
-          <Route exact path="/entertainment">
-            {this.getNewsComponent("entertainment")}
-          </Route>
-          <Route exact path="/health">
-            {this.getNewsComponent("health")}
-          </Route>
-          <Route exact path="/science">
-            {this.getNewsComponent("science")}
-          </Route>
-          <Route exact path="/sports">
-            {this.getNewsComponent("sports")}
-          </Route>
-          <Route exact path="/technology">
-            {this.getNewsComponent("technology")}
-          </Route>
+          {this.categories.map((cat) => (
+            <Route exact path={`/${cat}`}>
+              {this.getNewsComponent(cat)}
+            </Route>
+          ))}
         </Switch>
       </Router>
     );
