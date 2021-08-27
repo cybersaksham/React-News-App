@@ -7,7 +7,7 @@ import News from "./Components/News";
 
 export class App extends Component {
   getNewsComponent = (cat) => (
-    <News pageSize={10} country={"in"} category={cat} />
+    <News key={cat} pageSize={10} country={"in"} category={cat} />
   );
 
   render() {
