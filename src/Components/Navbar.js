@@ -39,41 +39,13 @@ export class Navbar extends Component {
                   Categories
                 </Link>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li>
-                    <Link className="dropdown-item" to="/general">
-                      General
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="/business">
-                      Business
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="/entertainment">
-                      Entertainment
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="/health">
-                      Health
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="/science">
-                      Science
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="/sports">
-                      Sports
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="/technology">
-                      Technology
-                    </Link>
-                  </li>
+                  {this.props.categories.map((cat) => (
+                    <li key={cat}>
+                      <Link className="dropdown-item" to={`/${cat}`}>
+                        {cat.charAt(0).toUpperCase() + cat.slice(1)}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </li>
             </ul>

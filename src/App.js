@@ -23,13 +23,13 @@ export class App extends Component {
   render() {
     return (
       <Router>
-        <Navbar />
+        <Navbar categories={this.categories} />
         <Switch>
           <Route exact path="/">
             {this.getNewsComponent("general")}
           </Route>
           {this.categories.map((cat) => (
-            <Route exact path={`/${cat}`}>
+            <Route key={cat} exact path={`/${cat}`}>
               {this.getNewsComponent(cat)}
             </Route>
           ))}
