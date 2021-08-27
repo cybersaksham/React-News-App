@@ -3,6 +3,10 @@ import React, { Component } from "react";
 export class Pagination extends Component {
   render() {
     let { page, pages, handlePage, firstPage, lastPage } = this.props;
+    let pageArr = [];
+    if (page === 1) pageArr = [1, 2, 3];
+    else if (page === pages) pageArr = [page - 2, page - 1, page];
+    else pageArr = [page - 1, page, page + 1];
 
     return (
       <div className="container my-3 d-flex justify-content-center">
@@ -13,20 +17,13 @@ export class Pagination extends Component {
                 &lt;&lt;
               </button>
             </li>
-            {[page - 1, page, page + 1].map(
-              (i) =>
-                i !== 0 &&
-                i !== pages + 1 && (
-                  <li
-                    className={`page-item ${page === i ? "active" : ""}`}
-                    key={i}
-                  >
-                    <button className="page-link" onClick={() => handlePage(i)}>
-                      {i}
-                    </button>
-                  </li>
-                )
-            )}
+            {pageArr.map((i) => (
+              <li className={`page-item ${page === i ? "active" : ""}`} key={i}>
+                <button className="page-link" onClick={() => handlePage(i)}>
+                  {i}
+                </button>
+              </li>
+            ))}
             <li className={`page-item ${pages <= page ? "disabled" : ""}`}>
               <button onClick={lastPage} className="page-link">
                 &gt;&gt;
