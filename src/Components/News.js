@@ -8,11 +8,13 @@ export class News extends Component {
   static defaultProps = {
     country: "in",
     category: "general",
+    pageSize: 10,
   };
 
   static propTypes = {
     country: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
+    pageSize: PropTypes.number.isRequired,
   };
 
   constructor() {
@@ -52,7 +54,11 @@ export class News extends Component {
           lastPage={this.handleLastBtn}
         />
         <div className="container my-3">
-          <h2>Latest News</h2>
+          <h2>
+            {this.props.category.charAt(0).toUpperCase() +
+              this.props.category.slice(1)}{" "}
+            News
+          </h2>
           <hr />
           <div className="row">
             {this.state.articles.map((item) => {
