@@ -32,7 +32,7 @@ export class NewsItem extends Component {
             href={item.url ? item.url : "/"}
             target="_blank"
             rel="noreferrer"
-            className="btn btn-sm btn-primary"
+            className="btn btn-sm btn-dark"
           >
             Read More
           </a>
