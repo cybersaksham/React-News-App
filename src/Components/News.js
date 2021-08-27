@@ -13,12 +13,12 @@ export class News extends Component {
 
   getData = async (page__) => {
     this.setState({ loading: true });
-    let url__ = `https://newsapi.org/v2/top-headlines?country=in&apiKey=faffda3ddbcf4441a8c78ca4774e777d&pageSize=15&page=${page__}`;
+    let url__ = `https://newsapi.org/v2/top-headlines?country=in&apiKey=faffda3ddbcf4441a8c78ca4774e777d&pageSize=${this.props.pageSize}&page=${page__}`;
     let data__ = await fetch(url__);
     let parsedData__ = await data__.json();
     this.setState({
       articles: parsedData__.articles,
-      pages: Math.ceil(parsedData__.totalResults / 15),
+      pages: Math.ceil(parsedData__.totalResults / this.props.pageSize),
       page: page__,
       loading: false,
     });
