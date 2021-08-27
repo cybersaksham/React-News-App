@@ -13,13 +13,20 @@ export class Pagination extends Component {
                 &lt;&lt;
               </button>
             </li>
-            {Array.from({ length: pages }, (_, index) => index + 1).map((i) => (
-              <li className={`page-item ${page === i ? "active" : ""}`} key={i}>
-                <button className="page-link" onClick={() => handlePage(i)}>
-                  {i}
-                </button>
-              </li>
-            ))}
+            {[page - 1, page, page + 1].map(
+              (i) =>
+                i !== 0 &&
+                i !== pages + 1 && (
+                  <li
+                    className={`page-item ${page === i ? "active" : ""}`}
+                    key={i}
+                  >
+                    <button className="page-link" onClick={() => handlePage(i)}>
+                      {i}
+                    </button>
+                  </li>
+                )
+            )}
             <li className={`page-item ${pages <= page ? "disabled" : ""}`}>
               <button onClick={lastPage} className="page-link">
                 &gt;&gt;
