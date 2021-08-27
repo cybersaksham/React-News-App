@@ -1,9 +1,20 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import NewsItem from "./NewsItem";
 import Pagination from "./Pagination";
 import Spinner from "./Spinner";
 
 export class News extends Component {
+  static defaultProps = {
+    country: "in",
+    category: "general",
+  };
+
+  static propTypes = {
+    country: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+  };
+
   constructor() {
     super();
     this.state = {
@@ -13,7 +24,7 @@ export class News extends Component {
 
   getData = async (page__) => {
     this.setState({ loading: true });
-    let url__ = `https://newsapi.org/v2/top-headlines?country=in&apiKey=faffda3ddbcf4441a8c78ca4774e777d&pageSize=${this.props.pageSize}&page=${page__}`;
+    let url__ = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=faffda3ddbcf4441a8c78ca4774e777d&pageSize=${this.props.pageSize}&page=${page__}`;
     let data__ = await fetch(url__);
     let parsedData__ = await data__.json();
     this.setState({
