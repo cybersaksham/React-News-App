@@ -26,8 +26,8 @@ export class News extends Component {
 
   componentDidMount = () => this.getData(1);
 
-  handlePrevBtn = () => this.getData(this.state.page - 1);
-  handleNextBtn = () => this.getData(this.state.page + 1);
+  handleFirstBtn = () => this.getData(1);
+  handleLastBtn = () => this.getData(this.state.pages);
   handlePage = (page__) => this.getData(page__);
 
   render() {
@@ -37,8 +37,8 @@ export class News extends Component {
           page={this.state.page}
           pages={this.state.pages}
           handlePage={this.handlePage}
-          prevPage={this.handlePrevBtn}
-          nextPage={this.handleNextBtn}
+          firstPage={this.handleFirstBtn}
+          lastPage={this.handleLastBtn}
         />
         <div className="container my-3">
           <h2>Latest News</h2>
@@ -60,8 +60,8 @@ export class News extends Component {
           page={this.state.page}
           pages={this.state.pages}
           handlePage={this.handlePage}
-          prevPage={this.handlePrevBtn}
-          nextPage={this.handleNextBtn}
+          firstPage={this.handleFirstBtn}
+          lastPage={this.handleLastBtn}
         />
       </>
     ) : (
