@@ -5,7 +5,7 @@ export class NewsItem extends Component {
     let { item } = this.props;
 
     return (
-      <div className="card" style={{ width: "18rem", height: "28rem" }}>
+      <div className="card" style={{ width: "18rem", height: "30rem" }}>
         <div className="card-header">
           {item.source.name ? item.source.name : "Unknown"}
         </div>
@@ -27,6 +27,11 @@ export class NewsItem extends Component {
             {item.description
               ? item.description.slice(0, 80) + "..."
               : "No Description"}
+          </p>
+          <p className="card-text my-2 d-flex justify-content-end">
+            <small className="text-muted">
+              - {item.author ? item.author : "Unknown"}
+            </small>
           </p>
           <a
             href={item.url ? item.url : "/"}
