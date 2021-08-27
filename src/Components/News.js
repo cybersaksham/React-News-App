@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import NewsItem from "./NewsItem";
 import Pagination from "./Pagination";
+import Spinner from "./Spinner";
 
 export class News extends Component {
   constructor() {
@@ -30,41 +31,41 @@ export class News extends Component {
   handlePage = (page__) => this.getData(page__);
 
   render() {
-    return (
-      !this.state.loading && (
-        <>
-          <Pagination
-            page={this.state.page}
-            pages={this.state.pages}
-            handlePage={this.handlePage}
-            prevPage={this.handlePrevBtn}
-            nextPage={this.handleNextBtn}
-          />
-          <div className="container my-3">
-            <h2>Latest News</h2>
-            <hr />
-            <div className="row">
-              {this.state.articles.map((item) => {
-                return (
-                  <div
-                    key={item.url}
-                    className="col-md-4 my-3  d-flex justify-content-center"
-                  >
-                    <NewsItem item={item} />
-                  </div>
-                );
-              })}
-            </div>
+    return !this.state.loading ? (
+      <>
+        <Pagination
+          page={this.state.page}
+          pages={this.state.pages}
+          handlePage={this.handlePage}
+          prevPage={this.handlePrevBtn}
+          nextPage={this.handleNextBtn}
+        />
+        <div className="container my-3">
+          <h2>Latest News</h2>
+          <hr />
+          <div className="row">
+            {this.state.articles.map((item) => {
+              return (
+                <div
+                  key={item.url}
+                  className="col-md-4 my-3  d-flex justify-content-center"
+                >
+                  <NewsItem item={item} />
+                </div>
+              );
+            })}
           </div>
-          <Pagination
-            page={this.state.page}
-            pages={this.state.pages}
-            handlePage={this.handlePage}
-            prevPage={this.handlePrevBtn}
-            nextPage={this.handleNextBtn}
-          />
-        </>
-      )
+        </div>
+        <Pagination
+          page={this.state.page}
+          pages={this.state.pages}
+          handlePage={this.handlePage}
+          prevPage={this.handlePrevBtn}
+          nextPage={this.handleNextBtn}
+        />
+      </>
+    ) : (
+      <Spinner />
     );
   }
 }
