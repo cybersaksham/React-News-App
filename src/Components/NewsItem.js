@@ -37,7 +37,9 @@ export class NewsItem extends Component {
             Read More
           </a>
         </div>
-        <div className="card-footer text-muted">{item.publishedAt}</div>
+        <div className="card-footer text-muted">
+          {new Date(item.publishedAt).toLocaleString()}
+        </div>
       </div>
     );
   }
