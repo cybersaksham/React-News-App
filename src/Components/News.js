@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import PropTypes from "prop-types";
 import NewsItem from "./NewsItem";
-import Pagination from "./Pagination";
 import Spinner from "./Spinner";
 import ScrollSpinner from "./ScrollSpinner";
 
@@ -35,6 +34,7 @@ export class News extends Component {
       articles: parsedData__.articles ? parsedData__.articles : [],
       pages: Math.ceil(parsedData__.totalResults / this.props.pageSize),
       page: page__,
+      totalResults: parsedData__.totalResults,
       loading: false,
     });
   };
@@ -59,7 +59,7 @@ export class News extends Component {
         <InfiniteScroll
           dataLength={this.state.articles.length}
           next={() => {}}
-          hasMore={true}
+          hasMore={this.state.articles.length !== this.state.totalResults}
           loader={<ScrollSpinner />}
         >
           <div className="container my-3">
