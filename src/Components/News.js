@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 import PropTypes from "prop-types";
 import NewsItem from "./NewsItem";
 import Pagination from "./Pagination";
@@ -60,19 +61,28 @@ export class News extends Component {
             News
           </h2>
           <hr />
-          <div className="row">
-            {this.state.articles.map((item) => {
-              return (
-                <div
-                  key={item.url}
-                  className="col-md-4 my-3  d-flex justify-content-center"
-                >
-                  <NewsItem item={item} />
-                </div>
-              );
-            })}
-          </div>
         </div>
+        <InfiniteScroll
+          dataLength={this.state.articles.length}
+          next={() => {}}
+          hasMore={true}
+          loader={<Spinner />}
+        >
+          <div className="container my-3">
+            <div className="row">
+              {this.state.articles.map((item) => {
+                return (
+                  <div
+                    key={item.url}
+                    className="col-md-4 my-3  d-flex justify-content-center"
+                  >
+                    <NewsItem item={item} />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </InfiniteScroll>
         <Pagination
           page={this.state.page}
           pages={this.state.pages}
