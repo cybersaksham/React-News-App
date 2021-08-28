@@ -75,6 +75,7 @@ export class News extends Component {
           next={this.handleScroll}
           hasMore={this.state.articles.length !== this.state.totalResults}
           loader={<ScrollSpinner />}
+          scrollThreshold={1.0}
         >
           <div className="container my-3">
             <div className="row">
