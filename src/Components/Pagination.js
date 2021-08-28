@@ -17,13 +17,20 @@ export class Pagination extends Component {
                 &lt;&lt;
               </button>
             </li>
-            {pageArr.map((i) => (
-              <li className={`page-item ${page === i ? "active" : ""}`} key={i}>
-                <button className="page-link" onClick={() => handlePage(i)}>
-                  {i}
-                </button>
-              </li>
-            ))}
+            {pageArr.map(
+              (i) =>
+                i > 0 &&
+                i <= pages && (
+                  <li
+                    className={`page-item ${page === i ? "active" : ""}`}
+                    key={i}
+                  >
+                    <button className="page-link" onClick={() => handlePage(i)}>
+                      {i}
+                    </button>
+                  </li>
+                )
+            )}
             <li className={`page-item ${pages <= page ? "disabled" : ""}`}>
               <button onClick={lastPage} className="page-link">
                 &gt;&gt;
