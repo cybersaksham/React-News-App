@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import LoadingBar from "react-top-loading-bar";
 
 import "./App.css";
 import Navbar from "./Components/Navbar";
@@ -23,6 +24,12 @@ export class App extends Component {
   render() {
     return (
       <Router>
+        <LoadingBar
+          color="#f11946"
+          progress={10}
+          height={5}
+          onLoaderFinished={() => {}}
+        />
         <Navbar categories={this.categories} />
         <Switch>
           <Route exact path="/">
