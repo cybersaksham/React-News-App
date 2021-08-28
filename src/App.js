@@ -8,7 +8,13 @@ import News from "./Components/News";
 
 export class App extends Component {
   getNewsComponent = (cat) => (
-    <News key={cat} pageSize={9} country={"in"} category={cat} />
+    <News
+      key={cat}
+      pageSize={9}
+      country={"in"}
+      category={cat}
+      progress={this.setProgress}
+    />
   );
 
   categories = [
@@ -21,12 +27,16 @@ export class App extends Component {
     "technology",
   ];
 
+  state = { progress: 0 };
+
+  setProgress = (progress) => this.setState({ progress: progress });
+
   render() {
     return (
       <Router>
         <LoadingBar
           color="#f11946"
-          progress={10}
+          progress={this.state.progress}
           height={5}
           onLoaderFinished={() => {}}
         />
