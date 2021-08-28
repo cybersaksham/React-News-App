@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import NewsItem from "./NewsItem";
 import Pagination from "./Pagination";
 import Spinner from "./Spinner";
+import ScrollSpinner from "./ScrollSpinner";
 
 export class News extends Component {
   static defaultProps = {
@@ -66,7 +67,7 @@ export class News extends Component {
           dataLength={this.state.articles.length}
           next={() => {}}
           hasMore={true}
-          loader={<Spinner />}
+          loader={<ScrollSpinner />}
         >
           <div className="container my-3">
             <div className="row">
