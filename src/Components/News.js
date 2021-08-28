@@ -30,7 +30,7 @@ export class News extends Component {
     let data__ = await fetch(url__);
     let parsedData__ = await data__.json();
     this.setState({
-      articles: parsedData__.articles,
+      articles: parsedData__.articles ? parsedData__.articles : [],
       pages: Math.ceil(parsedData__.totalResults / this.props.pageSize),
       page: page__,
       loading: false,
