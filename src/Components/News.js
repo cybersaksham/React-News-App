@@ -48,13 +48,6 @@ export class News extends Component {
   render() {
     return !this.state.loading ? (
       <>
-        <Pagination
-          page={this.state.page}
-          pages={this.state.pages}
-          handlePage={this.handlePage}
-          firstPage={this.handleFirstBtn}
-          lastPage={this.handleLastBtn}
-        />
         <div className="container my-3">
           <h2>
             {this.props.category.charAt(0).toUpperCase() +
@@ -84,13 +77,6 @@ export class News extends Component {
             </div>
           </div>
         </InfiniteScroll>
-        <Pagination
-          page={this.state.page}
-          pages={this.state.pages}
-          handlePage={this.handlePage}
-          firstPage={this.handleFirstBtn}
-          lastPage={this.handleLastBtn}
-        />
       </>
     ) : (
       <Spinner />
