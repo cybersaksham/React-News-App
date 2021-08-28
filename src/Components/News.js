@@ -22,6 +22,7 @@ export class News extends Component {
     super();
     this.state = {
       loading: true,
+      articles: [],
     };
   }
 
@@ -45,6 +46,19 @@ export class News extends Component {
   handleLastBtn = () => this.getData(this.state.pages);
   handlePage = (page__) => this.getData(page__);
 
+  handleScroll = async () => {
+    this.setState({ page: this.state.page + 1 });
+    let url__ = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=faffda3ddbcf4441a8c78ca4774e777d&pageSize=${this.props.pageSize}&page=${this.state.page}`;
+    let data__ = await fetch(url__);
+    let parsedData__ = await data__.json();
+    this.setState({
+      articles: this.state.articles.concat(parsedData__.articles),
+      pages: Math.ceil(parsedData__.totalResults / this.props.pageSize),
+      totalResults: parsedData__.totalResults,
+      loading: false,
+    });
+  };
+
   render() {
     return !this.state.loading ? (
       <>
@@ -58,7 +72,7 @@ export class News extends Component {
         </div>
         <InfiniteScroll
           dataLength={this.state.articles.length}
-          next={() => {}}
+          next={this.handleScroll}
           hasMore={this.state.articles.length !== this.state.totalResults}
           loader={<ScrollSpinner />}
         >
