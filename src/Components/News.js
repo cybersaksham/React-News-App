@@ -78,7 +78,7 @@ export class News extends Component {
           <InfiniteScroll
             dataLength={this.state.articles.length}
             next={this.handleScroll}
-            hasMore={this.state.articles.length !== this.state.totalResults}
+            hasMore={this.state.page < this.state.pages}
             loader={<ScrollSpinner />}
             scrollThreshold={1.0}
           >
