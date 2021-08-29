@@ -13,7 +13,7 @@ export class App extends Component {
       pageSize={9}
       country={"in"}
       category={cat}
-      api={"09def55c3971413f8b7882b3f8f56979"}
+      api={process.env.REACT_APP_NEWS_API}
       progress={this.setProgress}
     />
   );
