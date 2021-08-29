@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import PropTypes from "prop-types";
 import NewsItem from "./NewsItem";
-import Spinner from "./Spinner";
 import ScrollSpinner from "./ScrollSpinner";
 
 export class News extends Component {
@@ -65,41 +64,41 @@ export class News extends Component {
   };
 
   render() {
-    return !this.state.loading ? (
-      <>
-        <div className="container my-3">
-          <h2>
-            {this.props.category.charAt(0).toUpperCase() +
-              this.props.category.slice(1)}{" "}
-            News
-          </h2>
-          <hr />
-        </div>
-        <InfiniteScroll
-          dataLength={this.state.articles.length}
-          next={this.handleScroll}
-          hasMore={this.state.articles.length !== this.state.totalResults}
-          loader={<ScrollSpinner />}
-          scrollThreshold={1.0}
-        >
+    return (
+      !this.state.loading && (
+        <>
           <div className="container my-3">
-            <div className="row">
-              {this.state.articles.map((item) => {
-                return (
-                  <div
-                    key={item.url}
-                    className="col-md-4 my-3  d-flex justify-content-center"
-                  >
-                    <NewsItem item={item} />
-                  </div>
-                );
-              })}
-            </div>
+            <h2>
+              {this.props.category.charAt(0).toUpperCase() +
+                this.props.category.slice(1)}{" "}
+              News
+            </h2>
+            <hr />
           </div>
-        </InfiniteScroll>
-      </>
-    ) : (
-      <Spinner />
+          <InfiniteScroll
+            dataLength={this.state.articles.length}
+            next={this.handleScroll}
+            hasMore={this.state.articles.length !== this.state.totalResults}
+            loader={<ScrollSpinner />}
+            scrollThreshold={1.0}
+          >
+            <div className="container my-3">
+              <div className="row">
+                {this.state.articles.map((item) => {
+                  return (
+                    <div
+                      key={item.url}
+                      className="col-md-4 my-3  d-flex justify-content-center"
+                    >
+                      <NewsItem item={item} />
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </InfiniteScroll>
+        </>
+      )
     );
   }
 }
