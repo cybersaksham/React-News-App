@@ -27,13 +27,17 @@ export class News extends Component {
   }
 
   getData = async (page__) => {
-    this.props.progress(10);
+    let progress__ = 10;
+    let s = setInterval(() => {
+      if (progress__ <= 80) {
+        this.props.progress(progress__);
+        progress__ += 1;
+      }
+    }, 10);
     this.setState({ loading: true });
     let url__ = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.api}&pageSize=${this.props.pageSize}&page=${page__}`;
     let data__ = await fetch(url__);
-    this.props.progress(30);
     let parsedData__ = await data__.json();
-    this.props.progress(60);
     this.setState({
       articles: parsedData__.articles ? parsedData__.articles : [],
       pages: Math.ceil(parsedData__.totalResults / this.props.pageSize),
@@ -41,6 +45,7 @@ export class News extends Component {
       totalResults: parsedData__.totalResults,
       loading: false,
     });
+    clearInterval(s);
     this.props.progress(100);
   };
 
