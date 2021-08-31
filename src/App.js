@@ -40,6 +40,7 @@ export class App extends Component {
           progress={this.state.progress}
           height={5}
           onLoaderFinished={() => {}}
+          loaderSpeed={0}
         />
         <Navbar categories={this.categories} />
         <Switch>
